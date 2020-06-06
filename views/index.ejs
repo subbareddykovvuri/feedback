@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Feedback form</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script type="text/javascript" src="javascripts/angular.js"></script>
+</head>
+<body  ng-app='myApp' class="container">
+	<br>
+	<div>
+		<ul class="nav nav-pills" >
+            <li class="active"><a data-toggle="pill" href="#form" style="margin-left: 500px">Form</a></li>
+
+            <li><a data-toggle="pill" href="#list"  style="margin-left:20px">List</a></li>
+
+        </ul>
+         <a href="/logout"><i class="btn btn-danger glyphicon glyphicon-log-out" style="margin-left: 90%"><b>&nbsp;logout</b></i></a>
+	</div>
+	
+	<div>
+		<p><%=user.name%></p>
+      <p><%=user.email%></p>
+      <p><%=user.password%></p>
+	</div>
+	<div class="tab-content" ng-controller="myController"  >
+
+		<div id="form" class="tab-pane fade in active col-md-6 col-md-offset-3" style="border: 1px solid skyblue; margin-top:50px;box-shadow: 5px 5px 5px 5px;padding: 20px; border-radius: 3%">
+		<form class="form-group">
+			<br>
+			<h1 style="text-align:center">FeedBack</h1>
+			<br>
+			<label>Username:</label>
+			<input type="text" ng-model="users.name" class="form-control "  required="">
+			<label>Rollno:</label>
+			<input type="text" ng-model="users.rollno" class="form-control" required="">
+			<label>Email:</label>
+			<input type="email" ng-model="users.email" class="form-control" required="">
+			<label>phno:</label>
+			<input type="number" ng-model="users.phno" class="form-control" required="">
+			<br>
+			<br>
+			<button class="btn btn-info"  style="margin-left: 40%" ng-click="saveData(users)">submit</button>
+
+		</form>
+	    </div>
+        <div id="list" class="tab-pane fade">
+        	<br>
+        	<br>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>S.no</th>
+					<%# <th>id</th> %>
+					<th>Name</th>
+					<th>Rllno</th>
+					<th>Email</th>
+					<th>Phno</th>
+					<th>Edit</th>
+					<th>Remove</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				 <tr ng-repeat="users in user">
+			        <td>{{$index+1}}</td>
+                    <%# <td><span ng-hide="editUser">{{users._id}}</span>
+                        <input class="form-control" type="text" ng-show="editUser" ng-model="users._id"ng-read-only="true"></td> %>
+                    <td><span ng-hide="editUser">{{users.name}}</span>
+                        <input class="form-control" type="text" ng-show="editUser" ng-model="users.name"></td>
+                    <td><span ng-hide="editUser">{{users.rollno}}</span>
+                        <input class="form-control" type="text" ng-show="editUser" ng-model="users.rollno"></td>
+                    <td><span ng-hide="editUser">{{users.email}}</span>
+                        <input class="form-control" type="email" ng-show="editUser" ng-model="users.email"></td>
+                    <td><span ng-hide="editUser">{{users.phno}}</span>
+                        <input class="form-control" type="number" ng-show="editUser" ng-model="users.phno"></td>
+                    <td>
+                        <i class="btn btn-primary glyphicon glyphicon-edit" ng-hide="editUser" ng-click="editData(); editUser=true"></i>
+                        <i class="btn btn-success glyphicon glyphicon-ok" ng-show="editUser" ng-click="updateData(users); editUser=false"></i>
+                    </td>
+                    <td>
+                        <i class="btn btn-danger glyphicon glyphicon-trash" ng-click="removeData(users)"></i>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+		
+
+	    </div>
+		
+	</div>
+
+
+</body>
+</html>
