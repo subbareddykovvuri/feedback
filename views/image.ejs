@@ -5,22 +5,79 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+	<style>
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #F2F2F2;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #2377F2;
+  color: white;
+}
+</style>
 </head>
-<body>
-	<div class="container">
+<body >
+	
+  	<div class="container topnav" style="background-color: #FAFAFA">
+		<div class="col-md-4" style="height:70px;background-color: #FFFFFF">
+			<br>
+			<button class="btn btn-info">FB</button>
+			<input type="text" placeholder="search" style="border-radius: 3%">
+			<br>
+		</div>	
+		<div class="col-md-6" style="height:70px;background-color: #FFFFFF">
+			<br>	
+			<a class="active col-md-2 glyphicon glyphicon-home" href="#home" ></a>
+			<a class="col-md-2" href="#news">News</a>
+			<a class="col-md-2" href="#contact">Contact</a>
+			<a class="col-md-2" href="#about">About</a>
+			<i></i>
+  		</div>
+  	</div>
+ 	<div class="container" style="background-color: #FAFAFA">
+		<div class="col-md-6 col-md-offset-3">
 		<form class="form-group" action="/imageupload" method="post" enctype="multipart/form-data">
+			<br>
+			<textarea class="form-control" type="text" name="desc" value="none" placeholder="enter "></textarea>
 			<input class="form-control" type="file" name="image" >
 			<br>
 			<br>
-			<input class="btn btn-info" type="submit" value="save image">
+			<input class="btn btn-info" type="submit" value="upload" style="float: right">
 			<br>
 			<br>
 
 		</form>
 		<br>
 		<br>
-		<p><%= a[0].image %></p>
-		<img src="images/<%=a[0].image%>" height="200" width="300">
+		
+		
+		<% for(var i=a.length-1; i>0 ; i--) {%>
+
+   			<div  style="background-color: #FFFFFF;border-style: ridge;"  >
+   			<br>
+   			<br>
+       		<p style="text-indent: 50px;text-align: justify;letter-spacing: 3px">Description  :  <%= a[i].description %></p>
+       	
+     		<img src="images/<%=a[i].image%>"  width="500px"  style="margin-left: 20px" >
+     		<br>
+     		<br>
+     		</div>
+     		<div  style="height: 20px">
+     			
+     		</div>
+		<% } %>
+		</div>
 	</div>
 </body>
 </html>

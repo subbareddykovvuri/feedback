@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+	<title>Interest</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+</head>
+<body >
+    <div ng-app>
+    	{{pow(3,4)}}
+    	<label>Enter the amount </label>
+    	<input type="number" ng-model="p"><br>
+    	<label>Enter rate of interest </label>
+    	<input type="number" ng-model="r"><br>
+    	<label>Enter duration </label>
+    	<input type="number" ng-model="t"><br>
+
+        simpleinterest={{ (p*t*r)/100 }}
+       	
+       
+    </div>
+</body>
+</html>

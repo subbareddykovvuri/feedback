@@ -34,7 +34,7 @@
 			<br>
 			<label>Username:</label>
 			<input type="text" ng-model="users.name" class="form-control "  required="">
-			<label>Rollno:</label>
+			<label>amount:</label>
 			<input type="text" ng-model="users.rollno" class="form-control" required="">
 			<label>Email:</label>
 			<input type="email" ng-model="users.email" class="form-control" required="">
@@ -43,7 +43,7 @@
 			<br>
 			<br>
 			<button class="btn btn-info"  style="margin-left: 40%" ng-click="saveData(users)">submit</button>
-
+ 
 		</form>
 	    </div>
         <div id="list" class="tab-pane fade">
@@ -55,7 +55,7 @@
 					<th>S.no</th>
 					<%# <th>id</th> %>
 					<th>Name</th>
-					<th>Rllno</th>
+					<th>amount</th>
 					<th>Email</th>
 					<th>Phno</th>
 					<th>Edit</th>
@@ -64,7 +64,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				 <tr ng-repeat="users in user">
+				 <tr ng-repeat="users in user" ng-init="total=1">
+
 			        <td>{{$index+1}}</td>
                     <%# <td><span ng-hide="editUser">{{users._id}}</span>
                         <input class="form-control" type="text" ng-show="editUser" ng-model="users._id"ng-read-only="true"></td> %>
@@ -82,8 +83,12 @@
                     </td>
                     <td>
                         <i class="btn btn-danger glyphicon glyphicon-trash" ng-click="removeData(users)"></i>
+
                     </td>
+                    
+                    <td>{{$total}}={{total+users.phno}}</td>
                 </tr>
+                
 			</tbody>
 		</table>
 		

@@ -34,6 +34,9 @@ var signup=db.get('signup');
 var col1=db.get('born');
 
 var image=db.get('image');
+
+var atha=db.get('atha');
+var pedhamma=db.get('pedhamma');
 /* GET home page. */
 
 router.get('/home', function(req,res){
@@ -52,6 +55,14 @@ router.get('/', function(req, res) {
 	 res.render('login');
 });
 
+router.get('/signup', function(req, res) {
+   res.render('signup');
+});
+
+router.get('/emailexist', function(req, res) {
+   res.render('emailexist');
+});
+
 router.get('/image', function(req, res) {
   image.find({},function(err,docs){
 
@@ -59,7 +70,20 @@ router.get('/image', function(req, res) {
    res.render('image',{'a':docs});
    })
 });
+router.get('/atha', function(req, res) {
+  atha.find({},function(err,docs){
 
+
+   res.render('atha',{'a':docs});
+   })
+});
+router.get('/pedhamma', function(req, res) {
+  pedhamma.find({},function(err,docs){
+
+
+   res.render('pedhamma',{'a':docs});
+   })
+});
 router.get('/qrcode', function(req, res) {
 	 
 	QRCode.toDataURL('subba', function (err, url) {
@@ -79,6 +103,9 @@ router.get('/forgot', function(req, res) {
 });
 router.get('/birthday', function(req, res) {
 	 res.render('birthday');
+});
+router.get('/simpleinterest', function(req, res) {
+   res.render('simpleinterest');
 });
 
 router.get('/getuser', function(req, res) {
@@ -142,14 +169,25 @@ router.post('/postsignup', function(req,res){
     email : req.body.email,
     password : cryptr.encrypt(req.body.password)
   }
-  signup.insert(data, function(err,docs){
-    if (err) {
-      console.log(err);
+  
+  signup.findOne({'email':req.body.email},function(err,docs){
+    if(docs==null){
+      signup.insert(data, function(err,docs1){
+        if (err){
+          console.log(err);
+        }
+        else{
+          res.send(docs1);
+        }
+      });
     }
     else{
-      res.send(docs);
+
+      console.log('Email already existed');
+      res.redirect('/signup');
     }
   });
+
 });
 
 router.post('/postlogin', function(req,res){
@@ -297,6 +335,18 @@ router.post('/imageupload',upload.single('image'), function(req,res){
   image.insert({"image":req.file.originalname})
   res.redirect('/image');
 });
+router.post('/athaupload',upload.single('image'), function(req,res){
+  console.log(req.file);
+  atha.insert({"image":req.file.originalname})
+  res.redirect('/atha');
+});
+router.post('/pedhammaupload',upload.single('image'), function(req,res){
+  console.log(req.file);
+  pedhamma.insert({"image":req.file.originalname})
+  res.redirect('/pedhamma');
+});
+
+
 module.exports = router;
 
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>image upload</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+
+</head>
+<body style="background-color: 	skyblue" >
+
+ 	<div class="container" style="background-color: #FAFAFA">
+ 		<h1 style="text-align: center ; font-family: Curlz MT;">HAPPY BIRTHDAY</h1>
+ 		<h1 style="text-align: center;font-family:French Script MT;font-size: 100px;color: #00bfff">pedhamma</h1>
+		<div class="col-md-8 col-md-offset-2" >
+		<form class="form-group" action="/pedhammaupload" method="post" enctype="multipart/form-data">
+			<br>
+			
+			<input class="form-control" type="file" name="image" >
+			<br>
+			<br>
+			<input class="btn btn-info" type="submit" value="upload" style="float: right">
+			<br>
+			<br>
+
+		</form>
+		<br>
+		<br>
+		
+		
+		<% for(var i=a.length-1; i>0 ; i--) {%>
+
+   			<div >
+   			<br>
+   			<br>
+       		
+       	
+     		<img src="images/<%=a[i].image%>"  width="700px"  style="margin-left: 10px" >
+     		<br>
+     		<br>
+     		</div>
+     		
+		<% } %>
+		</div>
+	</div>
+</body>
+</html>

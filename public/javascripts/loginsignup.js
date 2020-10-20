@@ -1,5 +1,5 @@
 var app = angular.module('loginapp', []);
-app.controller('signupController', function($scope,$http){
+app.controller('signupController', function($scope,$http,$window){
 
   $scope.signup = function(reg){
     $http({
@@ -7,8 +7,10 @@ app.controller('signupController', function($scope,$http){
         url : 'postsignup',
         data : $scope.reg
     }).then( function success(response){
-      alert('Registered Successfully');
+      alert('Registered Successfully or already Registered');
+      
       $scope.reg = {};
+      $window.location.href = '/'
     }, function error(response){
       alert('Registration Failed, Please try again');
     });
